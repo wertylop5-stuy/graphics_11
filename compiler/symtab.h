@@ -9,6 +9,12 @@
 #define SYM_FILE   5
 #define SYM_STRING 5
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "../include/matrix.h"
+
 struct constants
 {
   double r[4];

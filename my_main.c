@@ -38,70 +38,47 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "parser.h"
-#include "symtab.h"
+
+#include "include/parser.h"
+#include "include/draw.h"
+
+#include "compiler/symtab.h"
+
 #include "y.tab.h"
 
-#include "matrix.h"
-#include "ml6.h"
-#include "display.h"
-#include "draw.h"
-#include "stack.h"
-#include "gmath.h"
-
 void my_main() {
+	struct Matrix *m = new_matrix(4, 1000);
+	struct Rcs_stack *s = new_rcs_stack(3);
+	struct Light *l = new_light(67, 132, 75, 0, 255, 0, 1, 1, 1);
+	float view_vect[] = {0, 0, 1};
+	
+	Frame f;
+	zbuffer z;
+	struct Pixel p;
+	float aReflect[3];
+	float dReflect[3];
+	float sReflect[3];
+	float step = 15;
+	float theta;
+	
+	aReflect[RED] = 0.1;
+	aReflect[GREEN] = 0.1;
+	aReflect[BLUE] = 0.1;
 
-  int i;
-  struct matrix *tmp;
-  struct stack *systems;
-  screen t;
-  zbuffer zb;
-  color g;
-  double step_3d = 20;
-  double theta;
+	dReflect[RED] = 0.5;
+	dReflect[GREEN] = 0.5;
+	dReflect[BLUE] = 0.5;
 
-  //Lighting values here for easy access
-  color ambient;
-  double light[2][3];
-  double view[3];
-  double areflect[3];
-  double dreflect[3];
-  double sreflect[3];
-
-  ambient.red = 50;
-  ambient.green = 50;
-  ambient.blue = 50;
-
-  light[LOCATION][0] = 0.5;
-  light[LOCATION][1] = 0.75;
-  light[LOCATION][2] = 1;
-
-  light[COLOR][RED] = 0;
-  light[COLOR][GREEN] = 255;
-  light[COLOR][BLUE] = 255;
-
-  view[0] = 0;
-  view[1] = 0;
-  view[2] = 1;
-
-  areflect[RED] = 0.1;
-  areflect[GREEN] = 0.1;
-  areflect[BLUE] = 0.1;
-
-  dreflect[RED] = 0.5;
-  dreflect[GREEN] = 0.5;
-  dreflect[BLUE] = 0.5;
-
-  sreflect[RED] = 0.5;
-  sreflect[GREEN] = 0.5;
-  sreflect[BLUE] = 0.5;
-
-  systems = new_stack();
-  tmp = new_matrix(4, 1000);
-  clear_screen( t );
-  clear_zbuffer(zb);
-  g.red = 0;
-  g.green = 0;
-  g.blue = 0;
-
+	sReflect[RED] = 0.5;
+	sReflect[GREEN] = 0.5;
+	sReflect[BLUE] = 0.5;
+	
+	clear(f, z);
+	pixel_color(&p, 0, 0, 0);
+		
+	printf("");
+	
+	free_light(l);
+	free_stack(s);
+	free_matrix(m);
 }

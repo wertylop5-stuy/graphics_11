@@ -1,0 +1,57 @@
+[
+    {
+        "command": "cc -c -Wall include/draw.h /home/stanley/Documents/Github/graphics_11/draw.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/draw.c"
+    },
+    {
+        "command": "cc -c -Wall include/output.h /home/stanley/Documents/Github/graphics_11/output.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/output.c"
+    },
+    {
+        "command": "cc -c -Wall include/matrix.h /home/stanley/Documents/Github/graphics_11/matrix.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/matrix.c"
+    },
+    {
+        "command": "cc -c -Wall include/parser.h /home/stanley/Documents/Github/graphics_11/parser.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/parser.c"
+    },
+    {
+        "command": "cc -c -Wall include/shapes.h /home/stanley/Documents/Github/graphics_11/shapes.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/shapes.c"
+    },
+    {
+        "command": "cc -c -Wall include/rcs.h /home/stanley/Documents/Github/graphics_11/rcs.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/rcs.c"
+    },
+    {
+        "command": "cc -c -Wall include/lighting.h /home/stanley/Documents/Github/graphics_11/lighting.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/lighting.c"
+    },
+    {
+        "command": "cc -c -Wall include/vmath.h /home/stanley/Documents/Github/graphics_11/vmath.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/vmath.c"
+    },
+    {
+        "command": "cc -c -Wall compiler/symtab.h /home/stanley/Documents/Github/graphics_11/compiler/symtab.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/compiler/symtab.c"
+    },
+    {
+        "command": "cc -c -Wall /home/stanley/Documents/Github/graphics_11/compiler/print_pcode.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/compiler/print_pcode.c"
+    },
+    {
+        "command": "cc -c -Wall /home/stanley/Documents/Github/graphics_11/my_main.c",
+        "directory": "/home/stanley/Documents/Github/graphics_11",
+        "file": "/home/stanley/Documents/Github/graphics_11/my_main.c"
+    }
+]

@@ -10,6 +10,10 @@
 #ifndef LIGHTING_H
 #define LIGHTING_H
 
+#define RED	0
+#define GREEN	1
+#define BLUE	2
+
 #include"draw.h"
 
 //ambient, diffuse, specular

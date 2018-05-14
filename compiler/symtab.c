@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "parser.h"
 #include "symtab.h"
-#include "matrix.h"
+#include "parser.h"
 
 SYMTAB symtab[MAX_SYMBOLS];
 int lastsym = 0;

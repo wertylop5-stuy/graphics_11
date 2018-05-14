@@ -1,13 +1,33 @@
-OBJS = draw.o output.o matrix.o parser.o shapes.o rcs.o lighting.o vmath.o main.o
+OBJS = draw.o output.o matrix.o parser.o shapes.o rcs.o lighting.o vmath.o symtab.o print_pcode.o my_main.o
 CC = gcc
 OUTPUT = picture.ppm
 EXEC = exec
 MATH_LIB = -lm
 SCRIPT=face
 
-all: $(OBJS)
-	$(CC) -o $(EXEC) $(OBJS) $(MATH_LIB)
+all: parser
 	./$(EXEC) $(SCRIPT)
+
+parser: lex.yy.c y.tab.c y.tab.h $(OBJS)
+	$(CC) -o $(EXEC) lex.yy.c y.tab.c $(OBJS) $(MATH_LIB)
+
+lex.yy.c:
+	flex -I compiler/mdl.l
+
+y.tab.c:
+	bison -d -y compiler/mdl.y
+
+y.tab.h:
+	bison -d -y compiler/mdl.y
+
+symtab.o:
+	$(CC) $(DBG) -Wall -c compiler/symtab.c compiler/symtab.h
+
+print_pcode.o:
+	$(CC) $(DBG) -Wall -c compiler/print_pcode.c
+
+my_main.o:
+	$(CC) $(DBG) -Wall -c my_main.c
 
 main.o:
 	$(CC) $(DBG) -Wall -c main.c include/draw.h include/output.h include/rcs.h
@@ -38,4 +58,7 @@ vmath.o:
 
 clean:
 	rm -rf *.o $(OUTPUT)
+	rm -rf y.tab.*
+	rm -rf lex.yy.c
+	rm -rf mdl.dSYM
 

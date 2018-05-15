@@ -91,7 +91,7 @@ SYMTAB *add_symbol(char *name, int type, void *data)
       t->s.c = (struct constants *)data;
       break;
     case SYM_MATRIX:
-      t->s.m = (struct matrix *)data;
+      t->s.m = (struct Matrix *)data;
       break;
     case SYM_LIGHT:
       t->s.l = (struct light *)data;

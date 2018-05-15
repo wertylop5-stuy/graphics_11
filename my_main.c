@@ -39,8 +39,9 @@
 #include <math.h>
 #include <string.h>
 
-#include "include/parser.h"
+#include "compiler/parser.h"
 #include "include/draw.h"
+#include "include/rcs.h"
 
 #include "compiler/symtab.h"
 
@@ -76,7 +77,11 @@ void my_main() {
 	clear(f, z);
 	pixel_color(&p, 0, 0, 0);
 		
-	printf("");
+	printf("f\n");
+	int x;
+	for (x=0; x < MAX_COMMANDS; x++) {
+		printf("%d\n", op[x].opcode);
+	}
 	
 	free_light(l);
 	free_stack(s);

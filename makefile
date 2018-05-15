@@ -3,13 +3,13 @@ CC = gcc
 OUTPUT = picture.ppm
 EXEC = exec
 MATH_LIB = -lm
-SCRIPT=face
+SCRIPT=test.mdl
 
 all: parser
 	./$(EXEC) $(SCRIPT)
 
 parser: lex.yy.c y.tab.c y.tab.h $(OBJS)
-	$(CC) -o $(EXEC) lex.yy.c y.tab.c $(OBJS) $(MATH_LIB)
+	$(CC) -o $(EXEC) lex.yy.c y.tab.h y.tab.c $(OBJS) $(MATH_LIB)
 
 lex.yy.c:
 	flex -I compiler/mdl.l
@@ -24,7 +24,7 @@ symtab.o:
 	$(CC) $(DBG) -Wall -c compiler/symtab.c compiler/symtab.h
 
 print_pcode.o:
-	$(CC) $(DBG) -Wall -c compiler/print_pcode.c
+	$(CC) $(DBG) -Wall -c compiler/print_pcode.c compiler/parser.h include/matrix.h
 
 my_main.o:
 	$(CC) $(DBG) -Wall -c my_main.c

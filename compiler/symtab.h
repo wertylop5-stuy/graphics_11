@@ -34,7 +34,7 @@ typedef struct
   char *name;
   int type;
   union{
-    struct matrix *m;
+    struct Matrix *m;
     struct constants *c;
     struct light *l;
     double value;

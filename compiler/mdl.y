@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "parser.h"
-#include "matrix.h"
+#include "compiler/parser.h"
+#include "include/matrix.h"
 
 #define YYERROR_VERBOSE 1
 
@@ -794,8 +794,8 @@ int main(int argc, char **argv) {
   //COMMENT OUT PRINT_PCODE AND UNCOMMENT
   //MY_MAIN IN ORDER TO RUN YOUR CODE
 
-  //print_pcode();
-  my_main();
+  print_pcode();
+  //my_main();
 
   return 0;
 }

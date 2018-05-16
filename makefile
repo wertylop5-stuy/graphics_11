@@ -3,7 +3,7 @@ CC = gcc
 OUTPUT = picture.ppm
 EXEC = exec
 MATH_LIB = -lm
-SCRIPT=test.mdl
+SCRIPT=robot.mdl
 
 all: parser
 	./$(EXEC) $(SCRIPT)

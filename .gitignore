@@ -1,5 +1,7 @@
 *.swp
 exec
+*.png
+*.ppm
 
 # Compiler (flex/bison) output
 lex.yy.c

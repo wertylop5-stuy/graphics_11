@@ -133,21 +133,69 @@ void my_main() {
 		}
 			
 		case BOX:
+		{
+			double *temp = op[x].op.box.d0;
+			double *temp2 = op[x].op.box.d1;
+			struct Matrix *p = new_matrix(4, 1);
+			
+			add_cube(p, temp[0], temp[1], temp[2],
+				temp2[0], temp2[1], temp2[2]);
+			matrix_mult(peek(s), p);
+			draw_polygons(f, z, p, &p, l, view_vect);
+			free_matrix(p);
 		break;
+		}
 		
 		case SPHERE:
+		{
+			double *temp = op[x].op.sphere.d;
+			struct Matrix *p = new_matrix(4, 1);
+			
+			add_sphere(p, temp[0], temp[1], temp[2],
+				op[x].op.sphere.r, 12);
+			matrix_mult(peek(s), p);
+			draw_polygons(f, z, p, &p, l, view_vect);
+			free_matrix(p);
 		break;
+		}
 		
 		case TORUS:
+		{
+			double *temp = op[x].op.torus.d;
+			struct Matrix *p = new_matrix(4, 1);
+					
+			add_torus(p, temp[0], temp[1], temp[2],
+				op[x].op.torus.r0,
+				op[x].op.torus.r1,
+				15);
+			matrix_mult(peek(s), p);
+			draw_polygons(f, z, p, &p, l, view_vect);
+			free_matrix(p);
 		break;
+		}
 		
 		case LINE:
+		{
+			double *temp  = op[x].op.line.p0;
+			double *temp2 = op[x].op.line.p1;
+			struct Matrix *e = new_matrix(4, 1);
+			
+			push_edge(e, temp[0], temp[1], temp[2],
+				temp2[0], temp2[1], temp2[2]);
+			matrix_mult(peek(s), e);
+			draw_lines(f, z, e, &p);
+			free_matrix(e);
 		break;
+		}
 			
 		case SAVE:
+			printf("%s\n", op[x].op.save.p->name);
+			write_to_file(f);
+			save_png(f, op[x].op.save.p->name);
 		break;
 		
 		case DISPLAY:
+			display(f);
 		break;
 	};
 	x++;

@@ -40,9 +40,11 @@
 #include <string.h>
 
 #include "compiler/parser.h"
+
 #include "include/draw.h"
 #include "include/rcs.h"
 #include "include/shapes.h"
+#include "include/output.h"
 
 #include "compiler/symtab.h"
 
@@ -56,12 +58,12 @@ void my_main() {
 	
 	Frame f;
 	zbuffer z;
-	struct Pixel p;
+	struct Pixel pixel;
 	float aReflect[3];
 	float dReflect[3];
 	float sReflect[3];
-	float step = 15;
-	float theta;
+	//float step = 15;
+	//float theta;
 	
 	aReflect[RED] = 0.1;
 	aReflect[GREEN] = 0.1;
@@ -76,9 +78,8 @@ void my_main() {
 	sReflect[BLUE] = 0.5;
 	
 	clear(f, z);
-	pixel_color(&p, 0, 0, 0);
+	pixel_color(&pixel, 0, 0, 0);
 		
-	printf("f\n");
 	int x = 0;
 	while ( op[x].opcode != 0 ) {
 	switch(op[x].opcode) {
@@ -141,7 +142,7 @@ void my_main() {
 			add_cube(p, temp[0], temp[1], temp[2],
 				temp2[0], temp2[1], temp2[2]);
 			matrix_mult(peek(s), p);
-			draw_polygons(f, z, p, &p, l, view_vect);
+			draw_polygons(f, z, p, &pixel, l, view_vect);
 			free_matrix(p);
 		break;
 		}
@@ -154,7 +155,7 @@ void my_main() {
 			add_sphere(p, temp[0], temp[1], temp[2],
 				op[x].op.sphere.r, 12);
 			matrix_mult(peek(s), p);
-			draw_polygons(f, z, p, &p, l, view_vect);
+			draw_polygons(f, z, p, &pixel, l, view_vect);
 			free_matrix(p);
 		break;
 		}
@@ -169,7 +170,7 @@ void my_main() {
 				op[x].op.torus.r1,
 				15);
 			matrix_mult(peek(s), p);
-			draw_polygons(f, z, p, &p, l, view_vect);
+			draw_polygons(f, z, p, &pixel, l, view_vect);
 			free_matrix(p);
 		break;
 		}
@@ -183,13 +184,12 @@ void my_main() {
 			push_edge(e, temp[0], temp[1], temp[2],
 				temp2[0], temp2[1], temp2[2]);
 			matrix_mult(peek(s), e);
-			draw_lines(f, z, e, &p);
+			draw_lines(f, z, e, &pixel);
 			free_matrix(e);
 		break;
 		}
 			
 		case SAVE:
-			printf("%s\n", op[x].op.save.p->name);
 			write_to_file(f);
 			save_png(f, op[x].op.save.p->name);
 		break;

@@ -18,7 +18,7 @@
 //returns transformation matrices
 struct Matrix* scale(float a, float b, float c);
 struct Matrix* move(float a, float b, float c);
-struct Matrix* rotate(char axis, float deg);	//0: x, 1: y, 2: z
+struct Matrix* rotate(int axis, float deg);	//0: x, 1: y, 2: z
 
 //runs generic parametric function at^3 + bt^2 + ct + d with t [0, 1]
 //for the x and y coords

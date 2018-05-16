@@ -22,27 +22,27 @@ struct Matrix* move(float a, float b, float c) {
 	return temp;
 }
 
-struct Matrix* rotate(char axis, float deg) {
+struct Matrix* rotate(int axis, float deg) {
 	struct Matrix *temp = new_matrix(4, 4);
 	ident(temp);
 	float rad = deg * (M_PI/180.0f);
 	
 	switch(axis) {
-		case 'z':
+		case 2:
 			temp->m[0][0] = cosf(rad);
 			temp->m[0][1] = -sinf(rad);
 			temp->m[1][0] = sinf(rad);
 			temp->m[1][1] = cosf(rad);
 		break;
 		
-		case 'x':
+		case 0:
 			temp->m[1][1] = cosf(rad);
 			temp->m[1][2] = -sinf(rad);
 			temp->m[2][1] = sinf(rad);
 			temp->m[2][2] = cosf(rad);
 		break;
 		
-		case 'y':
+		case 1:
 			temp->m[0][0] = cosf(rad);
 			temp->m[2][0] = -sinf(rad);
 			temp->m[0][2] = sinf(rad);

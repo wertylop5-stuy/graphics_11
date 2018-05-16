@@ -42,6 +42,7 @@
 #include "compiler/parser.h"
 #include "include/draw.h"
 #include "include/rcs.h"
+#include "include/shapes.h"
 
 #include "compiler/symtab.h"
 
@@ -78,9 +79,78 @@ void my_main() {
 	pixel_color(&p, 0, 0, 0);
 		
 	printf("f\n");
-	int x;
-	for (x=0; x < MAX_COMMANDS; x++) {
-		printf("%d\n", op[x].opcode);
+	int x = 0;
+	while ( op[x].opcode != 0 ) {
+	switch(op[x].opcode) {
+		case PUSH:
+			push_rcs(s);
+		break;
+			
+		case POP:
+			pop_rcs(s);
+		break;
+		
+		case MOVE:
+		{
+			double *temp = op[x].op.move.d;
+			struct Matrix *t = move(temp[0], temp[1], temp[2]);
+			
+			matrix_mult(peek(s), t);
+			free_matrix(peek(s));
+			s->stack[s->top] = copy_matrix(t);
+			
+			free_matrix(t);
+		break;
+		}
+		
+		case SCALE:
+		{
+			double *temp = op[x].op.scale.d;
+			struct Matrix *t = scale(temp[0], temp[1], temp[2]);
+			
+			matrix_mult(peek(s), t);
+			free_matrix(peek(s));
+			s->stack[s->top] = copy_matrix(t);
+			
+			free_matrix(t);
+		break;
+		}
+		
+		case ROTATE:
+		{
+			//why is axis defined as a double lmao
+			struct Matrix *t = rotate(
+					op[x].op.rotate.axis,
+					op[x].op.rotate.degrees
+					);
+			
+			matrix_mult(peek(s), t);
+			free_matrix(peek(s));
+			s->stack[s->top] = copy_matrix(t);
+			
+			free_matrix(t);
+		break;
+		}
+			
+		case BOX:
+		break;
+		
+		case SPHERE:
+		break;
+		
+		case TORUS:
+		break;
+		
+		case LINE:
+		break;
+			
+		case SAVE:
+		break;
+		
+		case DISPLAY:
+		break;
+	};
+	x++;
 	}
 	
 	free_light(l);
